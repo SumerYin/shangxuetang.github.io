@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学员反馈 - 尚学堂美育书画工作室</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Serif SC', serif; background: #faf8f3; }
+    .font-calligraphy { font-family: 'Ma Shan Zheng', cursive; }
+    .seal { display: inline-flex; align-items: center; justify-content: center; background: #b8312f; color: #faf8f3; border-radius: 3px; }
+    .ink-divider { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a33, transparent); }
+    .feedback-card { transition: transform 0.2s ease; }
+    .feedback-card:hover { transform: translateY(-2px); }
+    .star { color: #f59e0b; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#2a2a2a] shadow-lg">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3">
+        <span class="seal w-8 h-8 text-sm font-bold">尚</span>
+        <span class="text-[#faf8f3] font-calligraphy text-lg tracking-wider">尚学堂美育</span>
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="./index.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">首页</a>
+        <a href="./teachers.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">师资</a>
+        <a href="./courses.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">课程</a>
+        <a href="./works.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">作品</a>
+        <a href="./classroom.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">教室</a>
+        <a href="./contact.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">联系</a>
+        <a href="./daily-word.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">每日一字</a>
+        <a href="./feedback.html" class="text-[#faf8f3] text-sm tracking-wider font-semibold">学员反馈</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-16">
+    <!-- Page Header -->
+    <section class="py-12 px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="seal w-14 h-14 text-2xl font-bold mb-4 mx-auto">评</span>
+        <h1 class="font-calligraphy text-4xl text-[#2a2a2a] mb-3 tracking-wider">学员反馈</h1>
+        <div class="ink-divider max-w-xs mx-auto my-4"></div>
+        <p class="text-[#8a8580]">来自学员和家长的真实声音</p>
+      </div>
+    </section>
+
+    <!-- Feedback List -->
+    <section class="pb-8 px-6">
+      <div class="max-w-3xl mx-auto space-y-4" id="feedbackList">
+        <!-- 内置好评 -->
+        <div class="feedback-card bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-[#b8312f] flex items-center justify-center text-[#faf8f3] font-semibold text-sm">李</div>
+            <div>
+              <p class="text-[#2a2a2a] font-semibold text-sm">李妈妈</p>
+              <p class="text-[#8a8580] text-xs">学员家长 · 学习2年</p>
+            </div>
+            <div class="ml-auto star text-sm">★★★★★</div>
+          </div>
+          <p class="text-[#2a2a2a] leading-relaxed text-sm">孩子从零基础开始学习，现在已经能写出很有韵味的楷书了。许老师非常有耐心，总是能发现孩子的进步并给予鼓励。书法学习不仅提升了孩子的书写水平，更培养了专注力和审美能力。</p>
+        </div>
+
+        <div class="feedback-card bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-[#6b8e7f] flex items-center justify-center text-[#faf8f3] font-semibold text-sm">张</div>
+            <div>
+              <p class="text-[#2a2a2a] font-semibold text-sm">张先生</p>
+              <p class="text-[#8a8580] text-xs">成人学员 · 学习1年</p>
+            </div>
+            <div class="ml-auto star text-sm">★★★★★</div>
+          </div>
+          <p class="text-[#2a2a2a] leading-relaxed text-sm">工作之余来学习书法，是一次很棒的体验。杨老师的教学方法很特别，不是简单的临摹，而是从理解笔画和结构入手，让我真正感受到了书法的魅力。每次上完课都觉得内心很平静。</p>
+        </div>
+
+        <div class="feedback-card bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-[#2a2a2a] flex items-center justify-center text-[#faf8f3] font-semibold text-sm">王</div>
+            <div>
+              <p class="text-[#2a2a2a] font-semibold text-sm">王妈妈</p>
+              <p class="text-[#8a8580] text-xs">学员家长 · 学习1.5年</p>
+            </div>
+            <div class="ml-auto star text-sm">★★★★★</div>
+          </div>
+          <p class="text-[#2a2a2a] leading-relaxed text-sm">女儿在尚学堂学习国画，姜老师不仅教技法，还会讲解每幅画背后的文化故事，孩子每次回来都兴致勃勃地分享。教室环境也很有文化氛围，让人一走进去就能静下心来。</p>
+        </div>
+
+        <div class="feedback-card bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-[#b8312f] flex items-center justify-center text-[#faf8f3] font-semibold text-sm">陈</div>
+            <div>
+              <p class="text-[#2a2a2a] font-semibold text-sm">陈同学</p>
+              <p class="text-[#8a8580] text-xs">少儿学员 · 学习3年</p>
+            </div>
+            <div class="ml-auto star text-sm">★★★★★</div>
+          </div>
+          <p class="text-[#2a2a2a] leading-relaxed text-sm">我最喜欢上许老师的篆刻课！每次刻完一枚印章都特别有成就感。老师说我现在刻的越来越好了，我还要继续努力！</p>
+        </div>
+
+        <div class="feedback-card bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-[#6b8e7f] flex items-center justify-center text-[#faf8f3] font-semibold text-sm">赵</div>
+            <div>
+              <p class="text-[#2a2a2a] font-semibold text-sm">赵女士</p>
+              <p class="text-[#8a8580] text-xs">成人学员 · 学习6个月</p>
+            </div>
+            <div class="ml-auto star text-sm">★★★★★</div>
+          </div>
+          <p class="text-[#2a2a2a] leading-relaxed text-sm">一直想学书法但担心年纪大了学不会，来了之后发现完全不用担心。老师很有耐心，小班教学让每个人都能得到充分的指导。现在我的硬笔字进步很大，软笔也在慢慢提升中。</p>
+        </div>
+
+        <div class="feedback-card bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-[#2a2a2a] flex items-center justify-center text-[#faf8f3] font-semibold text-sm">刘</div>
+            <div>
+              <p class="text-[#2a2a2a] font-semibold text-sm">刘妈妈</p>
+              <p class="text-[#8a8580] text-xs">学员家长 · 学习2年</p>
+            </div>
+            <div class="ml-auto star text-sm">★★★★★</div>
+          </div>
+          <p class="text-[#2a2a2a] leading-relaxed text-sm">之前试过好几家书法机构，最后选择了尚学堂。这里的教学体系很完善，从笔画到结构再到章法，循序渐进。孩子参加了几次比赛都获得了好成绩，非常感谢老师们的付出！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Feedback -->
+    <section class="py-8 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-1 h-5 bg-[#b8312f] rounded"></div>
+            <h3 class="text-lg font-semibold text-[#2a2a2a]">发表评价</h3>
+          </div>
+          <form id="feedbackForm" class="space-y-4">
+            <div>
+              <label class="block text-sm text-[#8a8580] mb-1">您的称呼</label>
+              <input type="text" id="feedbackName" placeholder="如：张妈妈、李同学" class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-[#b8312f] focus:ring-1 focus:ring-[#b8312f] outline-none text-sm bg-[#faf8f3]">
+            </div>
+            <div>
+              <label class="block text-sm text-[#8a8580] mb-1">评分</label>
+              <div class="flex gap-1" id="starRating">
+                <span class="star text-2xl cursor-pointer" data-value="1">★</span>
+                <span class="star text-2xl cursor-pointer" data-value="2">★</span>
+                <span class="star text-2xl cursor-pointer" data-value="3">★</span>
+                <span class="star text-2xl cursor-pointer" data-value="4">★</span>
+                <span class="star text-2xl cursor-pointer" data-value="5">★</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm text-[#8a8580] mb-1">评价内容</label>
+              <textarea id="feedbackContent" rows="4" placeholder="请分享您或孩子在学习中的感受和收获..." class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-[#b8312f] focus:ring-1 focus:ring-[#b8312f] outline-none text-sm bg-[#faf8f3] resize-none"></textarea>
+            </div>
+            <button type="submit" class="px-6 py-2 bg-[#b8312f] text-[#faf8f3] rounded-lg hover:bg-[#a02a28] transition font-semibold tracking-wider text-sm">提交评价</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-[#2a2a2a]">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="seal w-10 h-10 text-base font-bold mb-3 mx-auto">尚</span>
+        <p class="text-[#d4c5b0] mt-3 font-calligraphy text-lg tracking-wider">尚学堂美育书画工作室</p>
+        <p class="text-[#8a8580] text-sm mt-1">成立于2020年 · 专注书画教育</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // 星级评分交互
+    let selectedRating = 5;
+    const starRating = document.getElementById('starRating');
+    const stars = starRating.querySelectorAll('span');
+    
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        selectedRating = index + 1;
+        stars.forEach((s, i) => {
+          s.style.color = i < selectedRating ? '#f59e0b' : '#d1d5db';
+        });
+      });
+    });
+
+    // 提交评价
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('feedbackName').value.trim();
+      const content = document.getElementById('feedbackContent').value.trim();
+      
+      if (!name || !content) {
+        alert('请填写称呼和评价内容');
+        return;
+      }
+
+      const colors = ['#b8312f', '#6b8e7f', '#2a2a2a'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const starStr = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+      
+      const card = document.createElement('div');
+      card.className = 'feedback-card bg-white rounded-xl shadow-sm p-6';
+      card.style.animation = 'fadeIn 0.3s ease';
+      card.innerHTML = `
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-[#faf8f3] font-semibold text-sm" style="background:${color}">${name[0]}</div>
+          <div>
+            <p class="text-[#2a2a2a] font-semibold text-sm">${name}</p>
+            <p class="text-[#8a8580] text-xs">刚刚发表</p>
+          </div>
+          <div class="ml-auto star text-sm">${starStr}</div>
+        </div>
+        <p class="text-[#2a2a2a] leading-relaxed text-sm">${content}</p>
+      `;
+      
+      document.getElementById('feedbackList').prepend(card);
+      document.getElementById('feedbackName').value = '';
+      document.getElementById('feedbackContent').value = '';
+      selectedRating = 5;
+      stars.forEach(s => s.style.color = '#f59e0b');
+    });
+  </script>
+
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</body>
+</html>
