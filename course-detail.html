@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课程详情 - 尚学堂美育书画工作室</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Serif SC', serif; background: #faf8f3; }
+    .font-calligraphy { font-family: 'Ma Shan Zheng', cursive; }
+    .seal { display: inline-flex; align-items: center; justify-content: center; background: #b8312f; color: #faf8f3; border-radius: 3px; }
+    .ink-divider { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a33, transparent); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; justify-content: center; align-items: center; cursor: pointer; }
+    .modal-overlay.active { display: flex; }
+    .modal-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#2a2a2a] shadow-lg">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3">
+        <span class="seal w-8 h-8 text-sm font-bold">尚</span>
+        <span class="text-[#faf8f3] font-calligraphy text-lg tracking-wider">尚学堂美育</span>
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="./index.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">首页</a>
+        <a href="./teachers.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">师资</a>
+        <a href="./courses.html" class="text-[#faf8f3] text-sm tracking-wider font-semibold">课程</a>
+        <a href="./works.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">作品</a>
+        <a href="./classroom.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">教室</a>
+        <a href="./contact.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">联系</a>
+        <a href="./daily-word.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">每日一字</a>
+        <a href="./feedback.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition">学员反馈</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-16" id="courseContent">
+    <!-- 动态渲染 -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 bg-[#2a2a2a]">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="seal w-10 h-10 text-base font-bold mb-3 mx-auto">尚</span>
+      <p class="text-[#d4c5b0] mt-3 font-calligraphy text-lg tracking-wider">尚学堂美育书画工作室</p>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal-overlay" onclick="closeModal()">
+    <img id="modalImage" src="" alt="">
+  </div>
+
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('imageModal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+
+    const courses = {
+      bangshu: {
+        title: '榜书大字课 · 户外写生课',
+        seal: '户', sealBg: '#6b8e7f',
+        desc: '孝文化 冬温夏清 · 走进自然写生采风',
+        intro: '榜书，古曰"署书"，又称"擘窠大字"，是书法艺术中的重要门类。尚学堂将榜书大字课与户外写生相结合，以"孝文化""冬温夏清"等传统美德为主题，让学生在自然环境中感受大字书写的磅礴气势，同时体会传统文化的深厚内涵。户外写生课带领学生走进自然，观察四季变化，以笔墨记录天地之美。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_2d0b7c12.png?sign=1785651417-3d6f501fcd-0-3e05a8bc9363dc0e3b4e992f56080eb54b1c07071d28278553703d411c2355e3','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_d4389de6.png?sign=1785651418-cefbd9c4b3-0-2e13d5f4a7cf899ef231535f09aa95fcf3fb8bc8fcea0c0c1f9c1f6dbec2bffb','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_fc3b8dbf.png?sign=1785651418-60580172b8-0-0d99c031eecf2d4aeb6c777e7c7c98fc99be5021617921318e865bab4e58e4da','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_ab764596.png?sign=1785651418-62f1bcf0bc-0-d9b1e8614b268510ac656eeab358b15840ea94297639c73a82ab4787bb7989df','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_85d3fc25.png?sign=1785651418-9d553cd8e3-0-c2856d967762933c1954a77841a490769ebf4007e49037e11509b50f85491646','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_4d536efd.png?sign=1785651419-2c712bc7ef-0-12cfb5b63ee0f23e34c1a822e2c2ffd016744c8d27495b2356557d79a5bef8f1','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_62260d9c.png?sign=1785651419-33ecc2ad67-0-d0d16fac2b95a939e2734a69fea7ff78241eb15b4589ea187e6d202f9e635882','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/8_5235e72c.png?sign=1785651419-c08f5e8e4b-0-08070d4574629280412128f5bc1ab73e196fc29db105072741ba3bf403e1607c']
+      },
+      yanxiu_gw: {
+        title: '国学传统文化研学（国外）',
+        seal: '国', sealBg: '#8b5e3c',
+        desc: '日本 早稻田大学 东京大学 东北大学 鲁迅书法展',
+        intro: '走出国门，感受中华文化在海外的影响力。尚学堂组织学生赴日本名校研学，参观早稻田大学、东京大学、东北大学等知名学府，探访鲁迅书法展等文化展览。通过跨国文化体验，拓宽学生视野，增强文化自信，理解中华传统文化在世界范围内的传播与影响。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_7f76387c.png?sign=1785651420-45a71a5526-0-c67d5bd90dc332a888878d93ee0cc197647ab62411aa272b7af090f1cec1bba2','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_71538520.png?sign=1785651420-adcd01c565-0-27f9a17bd28f434a4fb6c41fa70ac795f4992f1542b9699ea6ab000a5c55cd21','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_201de12d.png?sign=1785651420-806731c849-0-65d49d6ebcf1e6c089d29e8c09baa634e39d97f92200af4c301ba15b1af67106','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_2a566b7c.png?sign=1785651420-ba90fd5b42-0-8a8ba0227d7d0515812671e6673a0ffc6eb6db9518e1be3052fbf2de83c114a2','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_224ae148.png?sign=1785651421-e1a4ccba1c-0-3c359e6a335a294eb63ff8a8db7372996281b056c9fffd7101d9d214a474b4f8','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_7369d443.png?sign=1785651421-07429aefe9-0-e4a73d5b4f51e7a33e6c2d1b04c119a483a60af7aae0ed30de9a1b3623fc6693','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_56459ae8.png?sign=1785651421-2abb950c63-0-849d07e4175a0bedf073bbb878ec8e375d2bc97199f20d9e99b607a5f3252cae','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_307a19cc.png?sign=1785651421-9c02dd268b-0-0bf7d6eaa59bd103350609ed1927f29152e8cdeedc22d49798ca762e6262b189']
+      },
+      yanxiu_sw: {
+        title: '国学传统文化研学（省外）',
+        seal: '省', sealBg: '#c76a4a',
+        desc: '安徽徽州 笔墨纸砚制作 茶叶采制烹',
+        intro: '赴安徽徽州研学，亲身体验笔墨纸砚的传统制作工艺。探访宣纸产地，了解从青檀皮到宣纸的完整制作流程；体验徽墨制作、毛笔工艺、砚台雕刻；深入茶山，参与茶叶采制烹的全过程。在行走中学习，在体验中感悟，让学生真正理解"文房四宝"背后的匠心与文化传承。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_798c807b.png?sign=1785651422-a662d78d79-0-c4715ab4bc99d464f5e4284a5a3fe2740c9acf4ff6b72c1079cedd31338f28ab','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_3449eadb.png?sign=1785651422-d5974bd463-0-48c56021c9dd16afaeddec598ed7f6ac36744496ae94458ddf97186a48b3eff0','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_848a7ffc.png?sign=1785651422-a2cdfe3aa4-0-187175c65aed1928b9791d64c397c03a56c0f8d0cb860beb5592b2dfacd3740f','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_c8802cd3.png?sign=1785651423-dc14d63798-0-073a4b9d149db884588d3d5b5529a11d532268d8009c95813130fa99f653f579','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_994a11f9.png?sign=1785651423-5826d1ff79-0-dc9ee774dd23f7c6063de8c2ff03860e68a2978b2d51fc3c05333d0eb36e5571','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_f852061d.png?sign=1785651423-ff3513bc00-0-384b2266f1973fce4611707ea7168f73131662c30d7114d1e9009825505dae70','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_e697c1d7.png?sign=1785651423-0ab50c88f6-0-15adccead0f69e58e6b01635d763d0ed506cf0c6d9bdf24d8bcf3fe63fea7712','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_480efc19.png?sign=1785651424-ea1fc0dac1-0-e40bf1417335c5de26bba48a8bf6d714e85bbc7fe09d2a0098130d45de18a98a','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/8_e604ee99.png?sign=1785651424-c232d4bb3d-0-f061b071621aac77bbb66bf29ef98b25285e5969ffe96982347a4449bdfd676a','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/9_977efb6d.png?sign=1785651425-946d680200-0-cca30c1f254ad0ee1ba2326c542b9a43068839b24597ef88ccf50001e97b6b26','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/10_e3dbfa07.png?sign=1785651425-fe7e097387-0-1488255f68e69284321357a09c4fc0f91400547b108a098827dd0cb60eb22c20']
+      },
+      yanxiu_sn: {
+        title: '国学传统文化研学（省内）',
+        seal: '京', sealBg: '#4a7c8b',
+        desc: '北京展览馆 年度文房四宝展 体验制作宣纸等',
+        intro: '立足北京，走进北京展览馆参加年度文房四宝展，亲身体验宣纸制作等传统工艺。参观各类文化展览和博物馆，感受首都深厚的文化底蕴。通过近距离接触传统工艺品和文物，培养学生的文化鉴赏力和审美素养。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_e8a53618.png?sign=1785651425-da4f4531b6-0-1eb53e66ffb7d3b564178c21679f73637785cb692f6bf2ec3445cda52d51339d','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_0ce9b033.png?sign=1785651425-7d8d4ec491-0-8c11cd210d1dd6527cfcbba7c8b6adaec8a4eded4d4d63083889025f2c3be238','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_428837a1.png?sign=1785651426-db4b475ef6-0-bb68e3157e0e5209b416d882e16b77912e839305fa8cc9a49fdcae576dca7744','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_d2fceb4d.png?sign=1785651427-c2cbd9b9a2-0-7788680eb14a2c7d205b5669430be72f219c611d6768de651b9653a93f323506','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_3d52202b.png?sign=1785651427-4de3f2cf6f-0-202b53b0d5df5ff2c154b343c151e090c5205f65c7c84131846c0609ebe1f332','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_af57f8ad.png?sign=1785651427-aa4d55d6a3-0-e2d9a1d66e990cb477dbfbcc5616c6b70ebfd4139a4498de0b2839edbf899f73','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_f00e480d.png?sign=1785651428-ed584e4d1e-0-1c9e467ff0b258d9bde0be2526ec0dcc83893a6ceb4093418e1b91e3f18cc620','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_2f1d228b.png?sign=1785651428-ec6c80f256-0-9f0e12abdc52781468e2074026065d034d881e28aa7247d2aea1078fa05b0d8c','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/8_3de9f35e.png?sign=1785651429-e672b5d8d4-0-222caf9516b21eaafcbb4a536dd025be376d6f3cf2cd0dfc984c91ed5722afbf']
+      },
+      sanxiaxiang: {
+        title: '文化三下乡（社区活动）',
+        seal: '乡', sealBg: '#b8312f',
+        desc: '送春联 送温暖 送爱心',
+        intro: '尚学堂积极响应"文化三下乡"号召，组织师生走进社区，开展"送春联、送温暖、送爱心"活动。学员们用所学书法技能为社区居民书写春联、福字，传递新春祝福；开展书法体验活动，让更多人感受传统文化魅力。在实践中培养学生的社会责任感和服务意识，让书法艺术回归生活、服务社会。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_5da600c1.png?sign=1785651429-0fd62654bf-0-47a8630d31c64a7dad1a7d89d8673dc44ff284dc24ea1ee49e57aaf8cc115d6e','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_cee5aabf.png?sign=1785651429-d0e6b883af-0-19e902eb676897236960805d48a84442b4990853c433dc5c310cfbcf6b906ad2','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_fc76a1ed.png?sign=1785651429-f8cb5a95f3-0-f3b75034b4bf577bdb1696b6cafa2ccc5a52070bfa14e6fdd3cd716a9123acf1','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_0f4105cb.png?sign=1785651429-1001520ebd-0-124cef42b02f302dc586f59848f939c3b8c324e4440e6e5509b4102fedf100eb','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_aa3de58e.png?sign=1785651430-4b12b90290-0-2f5cc20a787767c7dab8d429c0b356e0a2f7137e58e55ec0ee59b52665d5227d']
+      },
+      zhuanke_fengni: {
+        title: '篆刻 · 封泥 · 印屏制作 · 拓片制作',
+        seal: '印', sealBg: '#2a2a2a',
+        desc: '传统篆刻工艺全流程体验',
+        intro: '篆刻是中国传统艺术的瑰宝，融书法与雕刻于一体。本课程涵盖篆刻基础、封泥制作、印屏设计和拓片制作四大模块。学生从认识印章开始，学习篆书书写、刀法运用、章法布局；体验古法封泥的制作工艺；学习印屏的装裱与展示设计；掌握拓片制作的传统技法，将金石文字完美转印留存。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_39122fc7.png?sign=1785651430-23240c689c-0-55395012ed3580bdb1cef757db22723ef3ac5668338ebee95f8c80c8cc4e9cc7','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_e5520b93.png?sign=1785651430-00f484cd96-0-8728db8129d30e8136678b03947c81b50c976f16e7fd85f947c35bbd20dfa2b7','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_28eafa91.png?sign=1785651430-b712c10092-0-b637a4528c8f0c30881b83765ae3f6e828692919adeb6369eb3183cdbe5b1bd7']
+      },
+      fanggu: {
+        title: '仿古金石摹写',
+        seal: '古', sealBg: '#5a4a3a',
+        desc: '金石碑帖临摹 古法书写体验',
+        intro: '仿古金石摹写课程带学生走进金石学的世界。通过临摹古代金石碑帖，感受千年文字的厚重与朴拙；体验古法书写，使用传统工具和材料，还原古人书写场景。课程涵盖甲骨文、金文、石鼓文、汉碑等经典金石文字的临摹与赏析，让学生在笔墨间与古人对话，领略中华文字的演变之美。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_ae439334.png?sign=1785651431-56991fd79b-0-dca2cc8e1939ffc4b296176f356f40eb04cadfa4790546cc52ccc2f03ae57b6d','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_a619ffe8.png?sign=1785651431-f6f3184b9c-0-c1700b03446ae42d1c38f612eda4e7c217b1709d130ac81300ce8a2f2ad9337c']
+      },
+      qinhan: {
+        title: '秦汉简尺牍',
+        seal: '简', sealBg: '#7a6a5a',
+        desc: '秦汉简牍书写 尺牍信札',
+        intro: '秦汉简牍是中国书法史上的珍贵遗产，记录了两千多年前人们的日常书写。本课程带领学生临摹秦简、汉简上的文字，感受古人在竹简上书写的自然与率意；学习尺牍信札的书写格式与文辞，体验传统书信文化的雅致。在临习中体会简牍书法的灵动与古意，提升书法修养。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_81094f0b.png?sign=1785651431-a857ccc1d6-0-bde5728cbdf6bc7b7f71f6e8080743066e52a1e2d6056ec66fccec225958c824']
+      },
+      shufabao: {
+        title: '书法包 DIY',
+        seal: '包', sealBg: '#8b6e4e',
+        desc: '亲手制作专属书法工具包',
+        intro: '书法包DIY课程将手工制作与书法文化相结合，学生亲手设计制作属于自己的书法工具包。从选布、裁剪、缝制到装饰，每个环节都融入书法元素，可以绣上自己的名字或喜欢的书法字样。既锻炼动手能力，又培养对书法工具的珍惜之情，让每一次上课都充满仪式感。',
+        images: []
+      },
+      wenhuaqiang: {
+        title: '班级文化墙建设',
+        seal: '墙', sealBg: '#8b6e4e',
+        desc: '三字经 百家姓等传统文化墙',
+        intro: '班级文化墙建设课程将书法与校园文化建设相结合。学生集体书写三字经、百家姓、千字文等传统蒙学经典，设计制作班级文化墙。在合作中培养团队精神，在书写中深化对传统文化的理解。每一面文化墙都是班级的文化名片，让校园处处弥漫着书香气息。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_11b427b4.png?sign=1785651432-c640f75946-0-f789067dcdb24e4c74e107cba761dc53152814c89d2b5a6cca2830c28c202252','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_354838eb.png?sign=1785651432-c2a5e1fc5b-0-70ed0720cefa1b179353e6413fd9fef96253db68724d813ff1d894bbc121be7a','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_6d1fc765.png?sign=1785651433-40107ab928-0-64a37883a84fb932cea6387afce9052f0c28bcf9657f790086c4b712e691e76d','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_40fb8860.png?sign=1785651434-550d067e48-0-63556160a10aed88b1ea52da85e57a428de5b2056875ca841a50f98c1b11b08f','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_68b30f71.png?sign=1785651434-7d094a6c16-0-4003ed5c54d461aea8c4ece89d4b08e0847c3e2261c5679be9e3facf886953b8']
+      },
+      taideng: {
+        title: '书法台灯',
+        seal: '灯', sealBg: '#8b6e4e',
+        desc: '将书法融入生活美学',
+        intro: '书法台灯课程将书法艺术融入日常生活美学。学生在台灯灯罩上书写或绘画，将传统书法与现代家居巧妙结合。每一盏书法台灯都是独一无二的艺术品，既能照明，又能赏字，让书法之美照亮生活的每一个角落。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_d3b62b1b.png?sign=1785651434-f440faefb5-0-9d28302367575d3521ebf97e0e542376b6d358cdd702978d940de337870e24ee','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_53e55d21.png?sign=1785651435-afe0a41af2-0-40ad413da36d72d8869f9f30eefe18d6844893778797e59dc3ecf56d8271606e','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_1692acb6.png?sign=1785651435-0759b67be7-0-a6cac1b522250156e0f4f3f060d37b31928b03c717ea6c8afa8ac32917f3cd87','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_4d42a14b.png?sign=1785651436-f5a1b94b61-0-56d3f39eccf3c2fcdf5a5c4d6052563094020dd69da41158c15df457c570c590']
+      },
+      xiongzhang: {
+        title: '胸章 · 镜子 · 冰箱贴',
+        seal: '饰', sealBg: '#8b6e4e',
+        desc: '书法文创小物件制作',
+        intro: '书法文创小物件制作课程，将书法艺术转化为实用的生活小物。学生可以在胸章、镜子、冰箱贴上书写自己喜欢的字词或图案，制作出独一无二的书法文创产品。小巧精致，趣味十足，让书法走进日常生活，成为随身携带的文化符号。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_c62f907e.png?sign=1785651436-56b2b2ed35-0-d65257c992606c83327ef5a39dd6df397d232466a9051188d0c22afe927668d8','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_9b5dcd8b.png?sign=1785651436-cfd832ad94-0-21a09c76b01ae5d260b433403049370da83c49c29a90e022dad3fc32f8d4c880','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_5f22d9cb.png?sign=1785651437-1b659eb18a-0-d3b6a9046c23a086970b310fdf066fd8be23bcfa2626f546f3e9340415679d68','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_4f7b7486.png?sign=1785651437-bcc4f97357-0-b38949b273a2f8f32cd4f89c74775b43e0bf4a56bd1842fae79a118830ccb5e5','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_5c013779.png?sign=1785651438-b55fcec837-0-e412bc5e2ac8f0840172c5273ad05b55cc6b95cf48647f96851cb7a817f59874','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_48c66118.png?sign=1785651438-1dae9cfc6d-0-f049b85da8187be1ade0876e34cd08270b220b029db21049e896f75062045507','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_1da9c6c4.png?sign=1785651438-4672511e4a-0-1d8c247ec68ec04f0eac0c5be1ea0e390013358152f4e7cfa27f900e25419b28','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_dd8aca40.png?sign=1785651438-cc19b1f315-0-2e405c405c1e5f5633834a8a8e461b6ce3d2d1db04bdcd7f1566129ece8a51be','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/8_b99decd4.png?sign=1785651439-7329ecc9fd-0-f1fc3bca9422860fff1019565ee1406bf622f5a7e8c32e705cd2eef6ee152471','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/9_f9bfa1ce.png?sign=1785651439-d3c156f2dd-0-b62069b784d104126820528d7b5c8ead1e693012d957c29382a9804161e70e1a','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/10_07f120e9.png?sign=1785651439-c5ad5bccaf-0-270dffb7117392ad3905f14077657741456fe3272743ad64703b2174ac307f2a','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/11_7978dfd8.png?sign=1785651439-58e9388dd4-0-7da03b447a48d94ce4b1e241ce5d3db0d85cfdcedc5515f60ef59b87c8d7baed']
+      },
+      baitai: {
+        title: '书法摆台',
+        seal: '台', sealBg: '#8b6e4e',
+        desc: '精美书法摆台制作与展示',
+        intro: '书法摆台课程让学生将书写的作品制作成精美的桌面摆台。从书写内容的选择、纸张的搭配，到摆台框架的设计装裱，全程亲手完成。完成的摆台既可以装饰书桌，也是送给家人朋友的最佳礼物，让书法艺术真正融入生活空间。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_1c80dcec.png?sign=1785651440-9290a5b5c1-0-fbf6cae881b85da8ee39361223392bec271048fab63e477a1af6bed6bd2dbfc5','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_dd5fcd30.png?sign=1785651440-aa12443fc2-0-8140f9a7a61212265e0100dcbf4b9cd5695549e2c55eb37ac4243d8f4a2b031d','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_2b829aa4.png?sign=1785651440-98f79eb8ff-0-00ddeeae31266341cfb0c0631016e0c96a1e900f57c018f4233f1195b7269d67']
+      },
+      shanmian: {
+        title: '扇面书写 · 国画写生',
+        seal: '扇', sealBg: '#8b6e4e',
+        desc: '在扇面上书写与绘画，感受传统文人的雅趣',
+        intro: '扇面书写与国画写生课程，带学生体验传统文人的雅致生活。在折扇或团扇上书写诗词、绘制花鸟山水，将书法与绘画完美结合。扇面虽小，却能承载大千世界，方寸之间尽显笔墨功力。完成的作品既是实用之物，又是艺术佳作。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_ea0dfed5.png?sign=1785651440-43cc215ef8-0-52d78aa707ebe5ed401265773e6aca3cbdbd1eef01e29e454695c629fc6a8857','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_8707ca9c.png?sign=1785651441-667e58bf4f-0-24e0db01f123895281e74a2761b92a06fd835dddcf61640b7564d61448d72476','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_b98ad737.png?sign=1785651441-4081197eb5-0-16c5e72e1d6d9286e2f8dd2a4bd159f9076d340fe25571b82ddeb8fadac4978d','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_d64fb732.png?sign=1785651441-89de57a9d5-0-5e783f46cafc61e1f86ca820e5bab2ee95b84b04ecdef5e320590e3a8140eb9f','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_7b545bed.png?sign=1785651442-03da04a80f-0-c1314507f90473c6fc71706688efd9171b5bf5c1915c769e63d68d6adc53e653','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_60ab6990.png?sign=1785651442-6d4a4a730f-0-82ae0eb166b31d167e972b1a0e8f2eca1373c8b9b22e4a3196195108258231cc']
+      },
+      ceye: {
+        title: '册页 · 三字经 · 百家姓',
+        seal: '册', sealBg: '#b8312f',
+        desc: '经典蒙学册页书写',
+        intro: '册页是中国传统书画装裱的重要形式，集书法、绘画、装帧于一体。本课程以三字经、百家姓等经典蒙学读物为书写内容，学生从单页书写到册页装帧，体验完整的册页制作过程。一本册页，既是书法练习的成果，也是可以永久收藏的文化纪念。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_bedebe43.png?sign=1785651442-2614398679-0-12b5b680bb490fb31d11d4f4db2df37ec02de9bcb3b01af636d8ca25ebf4f83f','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_61f8da77.png?sign=1785651442-377bca3cd3-0-ed113875479706f5d6f27127bcf678f2464a0cf7802e3d725d590eff5c89b859']
+      },
+      shaonian: {
+        title: '少年中国说',
+        seal: '少', sealBg: '#b8312f',
+        desc: '梁启超经典名篇书写',
+        intro: '《少年中国说》是梁启超先生的名篇，以激昂的文字呼唤少年担当。本课程以书写此篇为主题，学生在临习中感受"少年智则国智，少年强则国强"的磅礴气势。通过书写经典名篇，既锻炼书法技艺，又培养家国情怀，让书法学习超越技法层面，达到以文化人的教育目标。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_9222f7c4.png?sign=1785651443-cd5e1ab510-0-dc15544cc454b96dfd78a32af04b05dae29a5cb95e588fde316c3c662c9e812e']
+      },
+      changjuan: {
+        title: '长卷 · 千字文',
+        seal: '卷', sealBg: '#b8312f',
+        desc: '千字文长卷书写体验',
+        intro: '千字文是中国传统蒙学经典，一千个不重复的汉字，涵盖天地人文。长卷书写千字文，是书法学习中的重要修行。学生从起笔到收笔，在一卷长纸上完成千字文的书写，体验书法创作的完整过程。长卷既是书法功力的展现，也是耐心与毅力的见证，完成后极具成就感与收藏价值。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_1f051dfc.png?sign=1785651443-70b9474934-0-24fbd8f24274a58c12a9aceda89b153c5b1fae854f62ea620267496c665a8160','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_bbad1324.png?sign=1785651443-2fd0d299c1-0-6aa3798459fac1aa22f60a87e15876295f8911fb71018d9bf566d26c5887e431','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_b4591cbe.png?sign=1785651444-f0300d4f28-0-e55b7ea52e1db41318c9f4ec76bb24a546f459116b0475ec65f81ad339ca3cf9','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_fca941fa.png?sign=1785651444-b031984256-0-0d5ea860f12f8466c891862780f7bac07f077614794595b5e9f965ad88b70ea7','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_e8618aa1.png?sign=1785651444-dc4c4e16a7-0-297e02b721c95c24b9de969d87a314c990d34c6961f4234a61bbcaafe0e5c16b','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_a8d812c7.png?sign=1785651444-cc7107b7ad-0-a5dfc416faa9fa37a38a48fdb03c7e0359364b8a41ef59d150a8d10f12e5f7db']
+      },
+      zonghe: {
+        title: '综合材料书写',
+        seal: '材', sealBg: '#b8312f',
+        desc: '金箔书写 金粉书写 多材料书写体验',
+        intro: '综合材料书写课程突破传统纸墨的局限，探索金箔、金粉、银粉等多种材料的书写可能。在金箔纸上书写，感受华丽与庄重；用金粉调墨书写，体验古人的尊贵书写方式；在不同材质和底色上创作，拓展书法表现力。课程旨在让学生了解书法材料的多样性，激发创造力与艺术想象力。',
+        images: ['https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_4de7a7bd.png?sign=1785651445-70498f57de-0-7b6cb30f1584c3e4894d5853a975d496491f2f864beb25ac314d366f13814ff2','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_0fded253.png?sign=1785651445-6c42d41e81-0-b21f5b43d45d5eef777625983a11b108bf9fea4ad8dc7647f709f6c5586b7412','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_387639d4.png?sign=1785651445-2f4d5909dc-0-df10f6adc5afead73b62e0cb6d6786012dd7a63b18d10cd8cba4664cb93fc323','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_dd828359.png?sign=1785651445-e0fbe491f7-0-1ecff1e370953e4c2a2b7a14b12625c9d57549c2bb405fffa4c4ab84e9efa712','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_9719614a.png?sign=1785651446-30d2b26653-0-8e67b53729be5f68405251bdb41b941793e25911327b97614b23a63c1e86a5c6','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_7a4bbe99.png?sign=1785651446-f762b80fe2-0-e8351fd0444771c4e009ed429b5ad7df0527ec634fecfbb0ee05b2e71e3ca5da','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_59008225.png?sign=1785651446-45e91705c3-0-c56ac3f959f091171b9d572e72ca8d4123f12fe176dcdff7fdb3ca972a333d8c','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_a28bfea8.png?sign=1785651447-359752478f-0-a1a204907dc156d7b009aed85ed1b13f26db3e2e1177da8ffd62c28af42c5bda','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/8_e1c27075.png?sign=1785651447-4b95fc8628-0-685b3ad38ce0b5896d1b45e102fdc847f012f8c1cf75ffe5b513c6ab358e79bc','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/9_24c17265.png?sign=1785651447-0a114120d5-0-de293786cf77fbb49326aeb2d847dc7a0dc68d27a373bdf38ef66f9bb1f5593e','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/10_43f2569e.png?sign=1785651447-e0f51edeb9-0-fdffe1f14727f13e2a761165a03376c09c69109bf5599c44e6b942e1533d6be7','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/11_bda4b0fd.png?sign=1785651448-f1736f7cb0-0-79ded8c848695cb06e88e692f2f1f83151255c9c447804a81d9ebdc31d33786a','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/12_9fa4a2ea.png?sign=1785651448-04f21ba722-0-12b97752c9e22d7ab3a26d7d348e7ab242379b83bd23043a6e4e05d538b12c7c','https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/13_8374b7c3.png?sign=1785651448-60fada49d0-0-9c1755ec8986273cb8acf07968663540a032bf57dabd0bbdfe3eb661a09f1c76']
+      }
+    };
+
+    // 解析URL参数
+    const params = new URLSearchParams(window.location.search);
+    const courseId = params.get('id') || 'bangshu';
+    const course = courses[courseId];
+
+    if (course) {
+      document.title = course.title + ' - 尚学堂美育书画工作室';
+      let imagesHtml = '';
+      if (course.images.length > 0) {
+        imagesHtml = '<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">';
+        course.images.forEach(img => {
+          const encoded = encodeURIComponent(img.split('/').pop());
+          const displaySrc = img;
+          imagesHtml += '<div class="bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer" onclick="openModal(\'' + displaySrc + '\')">';
+          imagesHtml += '<img src="' + displaySrc + '" alt="' + encoded + '" class="w-full">';
+          imagesHtml += '</div>';
+        });
+        imagesHtml += '</div>';
+      }
+
+      document.getElementById('courseContent').innerHTML = `
+        <section class="py-16 px-6 text-center">
+          <span class="seal w-14 h-14 text-2xl font-bold mb-3 mx-auto" style="background:${course.sealBg}">${course.seal}</span>
+          <h1 class="font-calligraphy text-3xl text-[#2a2a2a] mt-3 tracking-wider">${course.title}</h1>
+          <div class="ink-divider max-w-xs mx-auto mt-4 mb-3"></div>
+          <p class="text-[#8a8580]">${course.desc}</p>
+        </section>
+        <section class="px-6 pb-16">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-xl shadow-md p-8 mb-8">
+              <h2 class="font-calligraphy text-xl text-[#2a2a2a] mb-4 flex items-center gap-2">
+                <span class="seal w-8 h-8 text-sm font-bold" style="background:${course.sealBg}">介</span>
+                课程介绍
+              </h2>
+              <p class="text-[#2a2a2a] leading-relaxed text-sm">${course.intro}</p>
+            </div>
+            ${imagesHtml ? `
+            <div>
+              <h2 class="font-calligraphy text-xl text-[#2a2a2a] mb-4 flex items-center gap-2">
+                <span class="seal w-8 h-8 text-sm font-bold" style="background:${course.sealBg}">影</span>
+                课程掠影
+              </h2>
+              ${imagesHtml}
+            </div>` : ''}
+            <div class="mt-8 text-center">
+              <a href="./courses.html?tese" class="inline-block px-8 py-3 rounded-full text-sm font-semibold text-[#faf8f3] transition" style="background:${course.sealBg}">
+                ← 返回课程体系
+              </a>
+            </div>
+          </div>
+        </section>
+      `;
+    } else {
+      document.getElementById('courseContent').innerHTML = `
+        <section class="py-24 px-6 text-center">
+          <h1 class="font-calligraphy text-3xl text-[#2a2a2a]">课程未找到</h1>
+          <a href="./courses.html?tese" class="inline-block mt-6 px-8 py-3 rounded-full bg-[#b8312f] text-sm font-semibold text-[#faf8f3]">← 返回课程体系</a>
+        </section>
+      `;
+    }
+  </script>
+</body>
+</html>
