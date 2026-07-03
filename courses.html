@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课程体系 - 尚学堂美育书画工作室</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Serif SC', serif; background: #faf8f3; }
+    .font-calligraphy { font-family: 'Ma Shan Zheng', cursive; }
+    .seal { display: inline-flex; align-items: center; justify-content: center; background: #b8312f; color: #faf8f3; border-radius: 3px; }
+    .ink-divider { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a33, transparent); }
+    .tab-btn { cursor: pointer; padding: 10px 20px; border-radius: 25px; font-size: 14px; font-weight: 600; transition: all 0.3s; border: 2px solid #d4c5b0; background: transparent; color: #8a8580; }
+    .tab-btn.active { background: #b8312f; color: #faf8f3; border-color: #b8312f; box-shadow: 0 4px 15px rgba(184,49,47,0.3); }
+    .tab-btn:hover:not(.active) { border-color: #b8312f; color: #b8312f; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .course-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .course-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; justify-content: center; align-items: center; cursor: pointer; }
+    .modal-overlay.active { display: flex; }
+    .modal-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+    .tab-btn-green.active { background: #6b8e7f; border-color: #6b8e7f; box-shadow: 0 4px 15px rgba(107,142,127,0.3); }
+    .tab-btn-dark.active { background: #2a2a2a; border-color: #2a2a2a; box-shadow: 0 4px 15px rgba(42,42,42,0.3); }
+  
+    /* Mobile menu */
+    .mobile-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #2a2a2a; padding: 0.75rem 1.5rem; border-top: 1px solid #444; z-index: 51; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { padding: 0.6rem 0; border-bottom: 1px solid #333; }
+    .hamburger { display: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #d4c5b0; margin: 5px 0; border-radius: 1px; }
+    @media (max-width: 768px) {
+      .desktop-nav { display: none !important; }
+      .hamburger { display: block; }
+      nav a { writing-mode: horizontal-tb !important; letter-spacing: 0.05em !important; }
+      .mobile-menu a { writing-mode: horizontal-tb !important; }
+    }
+</style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#2a2a2a] shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3">
+        <span class="seal w-8 h-8 text-sm font-bold">尚</span>
+        <span class="text-[#faf8f3] font-calligraphy text-lg tracking-wider">尚学堂美育</span>
+      </a>
+      <div class="desktop-nav flex items-center gap-6 whitespace-nowrap">
+        <a href="./teachers.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">师资</a>
+        <a href="./courses.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">课程</a>
+        <a href="./works.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">作品</a>
+        <a href="./classroom.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">教室</a>
+        <a href="./contact.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">联系</a>
+        <a href="./daily-word.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">每日一字</a>
+        <a href="./feedback.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">学员反馈</a>
+      </div>
+      <div class="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="./teachers.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">师资</a>
+        <a href="./courses.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">课程</a>
+        <a href="./works.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">作品</a>
+        <a href="./classroom.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">教室</a>
+        <a href="./contact.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">联系</a>
+        <a href="./daily-word.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">每日一字</a>
+        <a href="./feedback.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">学员反馈</a>
+    </div>
+  </nav>
+
+  <main class="pt-14 md:pt-16">
+    <!-- Page Header -->
+    <section class="py-16 px-6 text-center">
+      <span class="seal w-14 h-14 text-2xl font-bold mb-3 mx-auto">课</span>
+      <h1 class="font-calligraphy text-4xl text-[#2a2a2a] mt-3 tracking-wider">课程体系</h1>
+      <div class="ink-divider max-w-xs mx-auto mt-4 mb-3"></div>
+      <p class="text-[#8a8580]">技道双修 · 循序渐进</p>
+    </section>
+
+    <!-- Main Tabs -->
+    <section class="px-6 pb-16">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex justify-center gap-3 mb-10 flex-wrap">
+          <button class="tab-btn active" onclick="switchTab('shufa', this)">书法</button>
+          <button class="tab-btn tab-btn-green" onclick="switchTab('guohua', this)">国画</button>
+          <button class="tab-btn tab-btn-dark" onclick="switchTab('zhuanke', this)">篆刻</button>
+          <button class="tab-btn tab-btn-dark" onclick="switchTab('zhuangbiao', this)">字画装裱</button>
+          <button class="tab-btn" onclick="switchTab('tese', this)">特色课程</button>
+        </div>
+
+        <!-- 书法课程 -->
+        <div id="tab-shufa" class="tab-content active">
+          <div class="grid md:grid-cols-2 gap-6 mb-10">
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold">硬</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">少儿硬笔书法</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 规范书写，硬笔技法，作业书写训练</li>
+                <li>• 时间：周一17:30-19:00；周二16:00-17:30；周日13:00-14:30</li>
+              </ul>
+              <p class="text-[#b8312f] text-xs mt-2">指导老师：许向阳</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold">软</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">少儿软笔书法</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 中华传统优秀法帖与篆隶楷行草临摹，大赛作品书写</li>
+                <li>• 时间：周一16:00-17:30；周二17:30-19:00；周六/周日全天</li>
+              </ul>
+              <p class="text-[#b8312f] text-xs mt-2">指导老师：许向阳</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold">成</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">成人软笔书法</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 审美鉴赏与五体筑基，文创制作，篆刻装裱初探</li>
+                <li>• 时间：周一至周五 09:00-10:30、10:30-12:00</li>
+              </ul>
+              <p class="text-[#b8312f] text-xs mt-2">指导老师：许向阳</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold">篆</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">篆刻</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 篆刻基础班：7月6-10日 周一至周五 9:00-12:00</li>
+                <li>• 篆刻精进班：7月13-17日 周一至周五 9:00-12:00</li>
+                <li>• 临摹邓石如千字文，篆刻技法精进</li>
+              </ul>
+              <p class="text-[#b8312f] text-xs mt-2">指导老师：许向阳</p>
+            </div>
+          </div>
+
+          <!-- 书法课程表（可点击放大） -->
+          <div class="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+            <h3 class="font-calligraphy text-xl text-[#2a2a2a] mb-4">2026暑期书法课程表</h3>
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_1e1b9612.jpg?sign=1785668545-8f3c6e047f-0-0246fc09413b5688d5aec36350cf0e9363d704156db3f7e33cfcfe5a978c344c" alt="书法课程表" class="w-full max-w-lg mx-auto rounded-lg shadow-sm">
+            <p class="text-[#8a8580] text-xs mt-3">点击图片可放大查看</p>
+          </div>
+        </div>
+
+        <!-- 国画课程 -->
+        <div id="tab-guohua" class="tab-content">
+          <div class="grid md:grid-cols-2 gap-6 mb-10">
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#6b8e7f">花</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">写意花鸟画</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 写意花鸟画临摹，传统花鸟技法学习</li>
+                <li>• 杨老师：周日 09:00-12:10、14:00-17:10</li>
+                <li>• 姜老师：周一/二/三 18:30-20:00；周日17:00-20:10</li>
+              </ul>
+              <p class="text-[#6b8e7f] text-xs mt-2">指导老师：杨立禅、姜泽旭</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#6b8e7f">工</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">工笔花鸟画</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 工笔花鸟临摹，精细技法与色彩运用</li>
+                <li>• 时间：周五 18:30-20:00</li>
+              </ul>
+              <p class="text-[#6b8e7f] text-xs mt-2">指导老师：姜泽旭</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#6b8e7f">山</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">山水画</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 山水画临摹，传统山水技法与意境表达</li>
+                <li>• 时间：周六 17:00-18:30、18:40-20:10</li>
+              </ul>
+              <p class="text-[#6b8e7f] text-xs mt-2">指导老师：姜泽旭</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#6b8e7f">人</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">水墨人物</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 人物线描基础</li>
+                <li>• 水墨写意人物</li>
+                <li>• 造型与神态表达</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 国画课程表（可点击放大） -->
+          <div class="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+            <h3 class="font-calligraphy text-xl text-[#2a2a2a] mb-4">2026暑期国画课程表</h3>
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_dbf3dd06.jpg?sign=1785668545-3bb1f8c11a-0-4f50e5c0ac9a11ea5a73383ee12011211759c2a53e12319e3c88ee16db0751d6" alt="国画课程表" class="w-full max-w-lg mx-auto rounded-lg shadow-sm">
+            <p class="text-[#8a8580] text-xs mt-3">点击图片可放大查看</p>
+          </div>
+        </div>
+
+        <!-- 篆刻课程 -->
+        <div id="tab-zhuanke" class="tab-content">
+          <div class="grid md:grid-cols-2 gap-6 mb-10">
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#2a2a2a">基</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">篆刻基础班</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 篆刻入门，认识印章与篆刻工具</li>
+                <li>• 基本刀法练习，直线与弧线刻制</li>
+                <li>• 临摹经典汉印，掌握基本章法</li>
+                <li>• 时间：7月6-10日 周一至周五 9:00-12:00</li>
+              </ul>
+              <p class="text-[#2a2a2a] text-xs mt-2 font-semibold">指导老师：许向阳</p>
+            </div>
+            <div class="course-card bg-white rounded-xl shadow-md p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#2a2a2a">精</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">篆刻精进班</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 临摹邓石如千字文篆书</li>
+                <li>• 篆刻技法精进，朱文白文刻制</li>
+                <li>• 篆刻创作与印面设计</li>
+                <li>• 时间：7月13-17日 周一至周五 9:00-12:00</li>
+              </ul>
+              <p class="text-[#2a2a2a] text-xs mt-2 font-semibold">指导老师：许向阳</p>
+            </div>
+          </div>
+          <!-- 篆刻参考图 -->
+          <div class="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+            <h3 class="font-calligraphy text-xl text-[#2a2a2a] mb-4">篆刻课程参考</h3>
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_33d16b01.jpg?sign=1785668546-58c7d4489c-0-f33ebe742af4b71db10cc45de7e552a652e4410789c52665f24b74f42198f17f" alt="篆刻课程" class="w-full max-w-lg mx-auto rounded-lg shadow-sm">
+            <p class="text-[#8a8580] text-xs mt-3">点击图片可放大查看</p>
+          </div>
+        </div>
+
+        <!-- 字画装裱课程 -->
+        <div id="tab-zhuangbiao" class="tab-content">
+          <div class="max-w-3xl mx-auto">
+            <div class="course-card bg-white rounded-xl shadow-md p-6 mb-10">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="seal w-9 h-9 text-sm font-bold" style="background:#2a2a2a">裱</span>
+                <h3 class="font-calligraphy text-xl text-[#2a2a2a]">字画装裱</h3>
+              </div>
+              <ul class="space-y-2 text-[#2a2a2a] text-sm leading-relaxed">
+                <li>• 书法、国画作品装裱技法</li>
+                <li>• 传统装裱工艺：托画心、镶边、覆背、装轴</li>
+                <li>• 现代装裱方式：镜片装框、卷轴装裱</li>
+                <li>• 作品保护与收藏知识</li>
+                <li>• 成人软笔书法班中含装裱初探内容</li>
+              </ul>
+              <p class="text-[#2a2a2a] text-xs mt-2 font-semibold">指导老师：许向阳</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 特色课程体系 -->
+        <div id="tab-tese" class="tab-content">
+          <div class="text-center mb-8">
+            <h2 class="font-calligraphy text-2xl text-[#2a2a2a] tracking-wider">特色课程体系</h2>
+            <div class="ink-divider max-w-xs mx-auto mt-3"></div>
+            <p class="text-[#8a8580] mt-3">以书画为本，拓展多元美育体验</p>
+          </div>
+
+          <!-- 项目背景 -->
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="seal w-10 h-10 text-base font-bold" style="background:#8b5e3c">源</span>
+              <h3 class="font-calligraphy text-xl text-[#2a2a2a]">项目背景</h3>
+            </div>
+            <div class="text-[#2a2a2a] text-sm leading-relaxed space-y-3">
+              <p>近年来，国家先后出台《关于全面加强和改进新时代学校美育工作的意见》《中华优秀传统文化传承发展工程"十四五"重点项目规划》等文件，明确要求将中华优秀传统文化全方位融入课程与课后服务体系。北京市教委也持续推进"课后330"服务提质升级，鼓励引入高校及社会优质资源。</p>
+              <p>以"厚德载物"为魂的儒雅教育体系，严格匹配北京市2026—2027学年校历，以十二月令与节日节气为时间轴，学生利用每周一两小时的课后时间，完成书法、榜书、国画、篆刻、碑帖仿古、册页、简牍、拓片、装裱、文化研学、礼仪、国学等12类课目的系统实践，最终每人拥有一册完整的《清华儒雅·十二月令册》以及三件以上可挂装的传统书画和拓印作品，真正达到"学一门、精一册、成一年"的美育目标。</p>
+              <p class="text-[#8a8580]">全模块遵循"冬藏——春生——夏长——秋收"的自然时序，与节日节气的演变相呼应。全年总计约48次课程，每周一次课，1-6年级均可参加，无基础要求。</p>
+            </div>
+          </div>
+
+          <!-- 特色课程分类 -->
+          <!-- 一、户外研学类 -->
+          <div class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="seal w-8 h-8 text-sm font-bold" style="background:#6b8e7f">行</span>
+              <h3 class="font-calligraphy text-lg text-[#2a2a2a]">户外研学</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=bangshu'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#6b8e7f">户</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">榜书大字课 · 户外写生课</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">孝文化 冬温夏清 · 走进自然写生采风</p>
+                  <p class="text-[#6b8e7f] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=yanxiu_gw'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b5e3c">国</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">国学传统文化研学（国外）</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">日本 早稻田大学 东京大学 东北大学 鲁迅书法展</p>
+                  <p class="text-[#8b5e3c] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=yanxiu_sw'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#c76a4a">省</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">国学传统文化研学（省外）</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">安徽徽州 笔墨纸砚制作 茶叶采制烹</p>
+                  <p class="text-[#c76a4a] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=yanxiu_sn'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#4a7c8b">京</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">国学传统文化研学（省内）</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">北京展览馆 年度文房四宝展 体验制作宣纸等</p>
+                  <p class="text-[#4a7c8b] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=sanxiaxiang'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#b8312f">乡</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">文化三下乡（社区活动）</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">送春联 送温暖 送爱心</p>
+                  <p class="text-[#b8312f] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 二、篆刻碑帖类 -->
+          <div class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="seal w-8 h-8 text-sm font-bold" style="background:#2a2a2a">刻</span>
+              <h3 class="font-calligraphy text-lg text-[#2a2a2a]">篆刻碑帖</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=zhuanke_fengni'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#2a2a2a">印</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">篆刻 · 封泥 · 印屏制作 · 拓片制作</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">传统篆刻工艺全流程体验</p>
+                  <p class="text-[#2a2a2a] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=fanggu'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#5a4a3a">古</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">仿古金石摹写</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">金石碑帖临摹 古法书写体验</p>
+                  <p class="text-[#5a4a3a] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=qinhan'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#7a6a5a">简</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">秦汉简尺牍</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">秦汉简牍书写 尺牍信札</p>
+                  <p class="text-[#7a6a5a] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 三、文创手工类 -->
+          <div class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="seal w-8 h-8 text-sm font-bold" style="background:#8b6e4e">创</span>
+              <h3 class="font-calligraphy text-lg text-[#2a2a2a]">文创手工</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=shufabao'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b6e4e">包</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">书法包 DIY</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">亲手制作专属书法工具包</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=wenhuaqiang'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b6e4e">墙</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">班级文化墙建设</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">三字经 百家姓等传统文化墙</p>
+                  <p class="text-[#8b6e4e] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=taideng'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b6e4e">灯</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">书法台灯</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">将书法融入生活美学</p>
+                  <p class="text-[#8b6e4e] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=xiongzhang'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b6e4e">饰</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">胸章 · 镜子 · 冰箱贴</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">书法文创小物件制作</p>
+                  <p class="text-[#8b6e4e] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=baitai'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b6e4e">台</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">书法摆台</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">精美书法摆台制作与展示</p>
+                  <p class="text-[#8b6e4e] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=shanmian'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#8b6e4e">扇</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">扇面书写 · 国画写生</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">在扇面上书写与绘画，感受传统文人的雅趣</p>
+                  <p class="text-[#8b6e4e] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 四、经典书写类 -->
+          <div class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="seal w-8 h-8 text-sm font-bold" style="background:#b8312f">典</span>
+              <h3 class="font-calligraphy text-lg text-[#2a2a2a]">经典书写</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=ceye'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#b8312f">册</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">册页 · 三字经 · 百家姓</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">经典蒙学册页书写</p>
+                  <p class="text-[#b8312f] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=shaonian'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#b8312f">少</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">少年中国说</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">梁启超经典名篇书写</p>
+                  <p class="text-[#b8312f] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=changjuan'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#b8312f">卷</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">长卷 · 千字文</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">千字文长卷书写体验</p>
+                  <p class="text-[#b8312f] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+              <div class="course-card bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" onclick="location.href='./course-detail.html?id=zonghe'">
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="seal w-9 h-9 text-sm font-bold" style="background:#b8312f">材</span>
+                    <h4 class="font-calligraphy text-lg text-[#2a2a2a]">综合材料书写</h4>
+                  </div>
+                  <p class="text-[#8a8580] text-sm">金箔书写 金粉书写 多材料书写体验</p>
+                  <p class="text-[#b8312f] text-xs mt-2">点击查看详情 →</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-[#2a2a2a]">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="seal w-10 h-10 text-base font-bold mb-3 mx-auto">尚</span>
+        <p class="text-[#d4c5b0] mt-3 font-calligraphy text-lg tracking-wider">尚学堂美育书画工作室</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal-overlay" onclick="closeModal()">
+    <img id="modalImage" src="" alt="">
+  </div>
+
+  <script>
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    }
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('imageModal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+    // Auto-switch to tab based on URL query
+    if (location.search.includes('tese')) {
+      const btn = document.querySelector('[onclick*="tese"]');
+      if (btn) switchTab('tese', btn);
+    }
+  </script>
+</body>
+</html>
