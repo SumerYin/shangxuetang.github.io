@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教室环境 - 尚学堂美育书画工作室</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Serif SC', serif; background: #faf8f3; }
+    .font-calligraphy { font-family: 'Ma Shan Zheng', cursive; }
+    .seal { display: inline-flex; align-items: center; justify-content: center; background: #b8312f; color: #faf8f3; border-radius: 3px; }
+    .ink-divider { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a33, transparent); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; justify-content: center; align-items: center; cursor: pointer; }
+    .modal-overlay.active { display: flex; }
+    .modal-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+    .env-card img, .env-card Image {
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .env-card { cursor: pointer; transition: transform 0.2s; }
+    .env-card img:hover { transform: scale(1.02); }
+  
+    /* Mobile menu */
+    .mobile-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #2a2a2a; padding: 0.75rem 1.5rem; border-top: 1px solid #444; z-index: 51; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { padding: 0.6rem 0; border-bottom: 1px solid #333; }
+    .hamburger { display: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #d4c5b0; margin: 5px 0; border-radius: 1px; }
+    @media (max-width: 768px) {
+      .desktop-nav { display: none !important; }
+      .hamburger { display: block; }
+      nav a { writing-mode: horizontal-tb !important; letter-spacing: 0.05em !important; }
+      .mobile-menu a { writing-mode: horizontal-tb !important; }
+    }
+</style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#2a2a2a] shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3">
+        <span class="seal w-8 h-8 text-sm font-bold">尚</span>
+        <span class="text-[#faf8f3] font-calligraphy text-lg tracking-wider">尚学堂美育</span>
+      </a>
+      <div class="desktop-nav flex items-center gap-6 whitespace-nowrap">
+        <a href="./teachers.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">师资</a>
+        <a href="./courses.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">课程</a>
+        <a href="./works.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">作品</a>
+        <a href="./classroom.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">教室</a>
+        <a href="./contact.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">联系</a>
+        <a href="./daily-word.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">每日一字</a>
+        <a href="./feedback.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm tracking-wider transition whitespace-nowrap">学员反馈</a>
+      </div>
+      <div class="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="./teachers.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">师资</a>
+        <a href="./courses.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">课程</a>
+        <a href="./works.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">作品</a>
+        <a href="./classroom.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">教室</a>
+        <a href="./contact.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">联系</a>
+        <a href="./daily-word.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">每日一字</a>
+        <a href="./feedback.html" class="text-[#d4c5b0] hover:text-[#faf8f3] text-sm whitespace-nowrap" onclick="toggleMobileMenu()">学员反馈</a>
+    </div>
+  </nav>
+
+  <main class="pt-14 md:pt-16">
+    <!-- Page Header -->
+    <section class="py-16 px-6 text-center">
+      <span class="seal w-14 h-14 text-2xl font-bold mb-3 mx-auto">境</span>
+      <h1 class="font-calligraphy text-4xl text-[#2a2a2a] mt-3 tracking-wider">教学环境</h1>
+      <div class="ink-divider max-w-xs mx-auto mt-4 mb-3"></div>
+      <p class="text-[#8a8580]">雅室翰墨 · 修身养性</p>
+    </section>
+
+    <!-- 教室图片 -->
+    <section class="px-6 pb-10">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="font-calligraphy text-2xl text-[#2a2a2a] mb-6 text-center tracking-wider">教学环境</h2>
+        <div class="columns-2 md:columns-3 gap-3">
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/file_6ae3a693.jpg?sign=1785669018-8742b67693-0-92d491e5b48641f4fb6675eb1242bedecfaae9d3bdc6b2870e7f79129059e7a6" alt="教学环境" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/1_b552a0c9.jpg?sign=1785669018-a0cfa2ab6b-0-01c7dcb97df2fe35968edc0fb607b6e78e503ea9cfc803dae8e26b15f613d7f4" alt="教学环境1" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/2_f077b6d9.jpg?sign=1785669019-7a4251eae2-0-776e5b9a6c868007abba30cd46b1726c690296912995cfb80c2277e01e8bf0c6" alt="教学环境2" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/3_f51adffc.jpg?sign=1785669019-9a33bce9a6-0-1c60d62200b6f59f5986ac234dea1e894d92912e91ada234a3aab7ff2525470e" alt="教学环境3" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/4_05559fad.jpg?sign=1785669019-52abb58c00-0-1089f32582cc93785eeb0af59371b57e12158b122ea56cce297d0549fffaacc2" alt="教学环境4" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/5_7e058165.jpg?sign=1785669020-52da930ead-0-9454e7d8673e8768761dc62a823cdc10bd3d88ed28d69785562ae76299ddfb33" alt="教学环境5" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/6_ead28532.jpg?sign=1785669020-4a3996b130-0-dc2ede2486f1025225093ccedc4c1b92fdc0e57e34428df7decd6bfcad8f83f4" alt="教学环境6" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/7_254df2d7.jpg?sign=1785669020-5b7214d910-0-e603e271057d4e9903174b74aff1d7f99ec41d26fcfbb929e1197080970eb3ab" alt="教学环境7" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/8_13816eb9.jpg?sign=1785669021-a9d604e2c4-0-25e22f99d4ef6ab88a7f3b0aa50d9ebbbe20f7131a4b9c1cfcbd918e0a621c63" alt="教学环境8" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/10_aeb7b7e2.jpg?sign=1785669021-9c9d33fc56-0-bbbc175fb4e3b14dfb1c69805db5480d0ac5d14853dcee72d80dde655b2bf509" alt="教学环境10" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/11_6f4af12c.jpg?sign=1785669021-800db75deb-0-5a1558b0c329bb38b34df4b6634231292c8a7ba5aa1f7e497abb2291af4f5f26" alt="教学环境11" class="w-full block" onclick="openModal(this.src)">
+          </div>
+          <div class="env-card bg-white rounded-xl shadow-md overflow-hidden mb-3 break-inside-avoid">
+            <img src="https://coze-coding-project.tos.coze.site/coze_storage_7655286718647566336/shangxuetang/12_0e547e38.jpg?sign=1785669021-cac3909932-0-70d40fd139693fcfa6965d60b4f15f93d8ffba5693e6d0a72a7f2201806ed326" alt="教学环境12" class="w-full block" onclick="openModal(this.src)">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-[#2a2a2a]">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="seal w-10 h-10 text-base font-bold mb-3 mx-auto">尚</span>
+        <p class="text-[#d4c5b0] mt-3 font-calligraphy text-lg tracking-wider">尚学堂美育书画工作室</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal-overlay" onclick="closeModal()">
+    <img id="modalImage" src="" alt="">
+  </div>
+
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('imageModal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
